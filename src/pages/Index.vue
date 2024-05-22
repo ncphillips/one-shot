@@ -1,6 +1,11 @@
 <template>
-  <section>
-    <h1>The Home</h1>
-  </section>
+  <h1>Solo GURPS</h1>
+  <RouterLink
+    :to="{
+      name: 'adventure.scene.show',
+      params: { adventureId: 1, sceneId: 1 },
+    }"
+  >
+    Start Adventure
+  </RouterLink>
 </template>
-<script lang="ts" setup></script>
