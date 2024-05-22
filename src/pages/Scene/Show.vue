@@ -6,7 +6,7 @@
       <ul>
         <li
           v-for="nextScene in currentScene.next"
-          :key="nextScene.scene"
+          :key="nextScene.sceneId"
           class="mt-1"
         >
           {{ nextScene.text }}, go to
@@ -14,10 +14,10 @@
             class="underline"
             :to="{
               name: 'adventure.scene.show',
-              params: { adventureId: 1, sceneId: nextScene.scene },
+              params: { adventureId: 1, sceneId: nextScene.sceneId },
             }"
           >
-            Scene {{ nextScene.scene }}
+            Scene {{ nextScene.sceneId }}
           </router-link>
         </li>
       </ul>

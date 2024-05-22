@@ -1,4 +1,4 @@
 export type SceneReference = {
-  scene: number;
+  sceneId: number;
   text: string;
 };
