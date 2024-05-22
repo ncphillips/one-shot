@@ -10,14 +10,15 @@ import { useVModel } from "@vueuse/core";
 
 // Prosemirror
 import { schema } from "./prosemirror-editor/schema";
-import { Command, EditorState } from "prosemirror-state";
+import { EditorState } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
-import { undo, redo, history } from "prosemirror-history";
+import { history } from "prosemirror-history";
 import { keymap } from "prosemirror-keymap";
 import { baseKeymap } from "prosemirror-commands";
 import { Node } from "prosemirror-model";
 import { inputRules } from "prosemirror-inputrules";
 import { createInputRules } from "./prosemirror-editor/input-rules";
+import { createCustomKeymap } from "./prosemirror-editor/keymap";
 
 const props = defineProps<{
   modelValue: any;
@@ -88,13 +89,6 @@ function createState(jsonDoc?: any) {
 
   emit("init:state", state);
   return state;
-}
-
-function createCustomKeymap(): Record<string, Command> {
-  return {
-    "Mod-z": undo,
-    "Mod-y": redo,
-  };
 }
 </script>
 <style>
