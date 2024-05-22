@@ -9,13 +9,18 @@ import { onMounted, ref, Ref, watch } from "vue";
 import { useVModel } from "@vueuse/core";
 
 // Prosemirror
-import { schema } from "prosemirror-schema-basic";
+import { schema } from "./prosemirror-editor/schema";
 import { Command, EditorState } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
 import { undo, redo, history } from "prosemirror-history";
 import { keymap } from "prosemirror-keymap";
 import { baseKeymap } from "prosemirror-commands";
-import { Node } from "prosemirror-model";
+import { Node, Schema } from "prosemirror-model";
+import {
+  InputRule,
+  inputRules,
+  textblockTypeInputRule,
+} from "prosemirror-inputrules";
 
 const props = defineProps<{
   modelValue: any;
@@ -76,7 +81,12 @@ function createState(jsonDoc?: any) {
   const state = EditorState.create({
     doc,
     schema,
-    plugins: [history(), keymap(createCustomKeymap()), keymap(baseKeymap)],
+    plugins: [
+      history(),
+      keymap(createCustomKeymap()),
+      keymap(baseKeymap),
+      inputRules(createInputRules(schema)),
+    ],
   });
 
   emit("init:state", state);
@@ -89,4 +99,27 @@ function createCustomKeymap(): Record<string, Command> {
     "Mod-y": redo,
   };
 }
+
+function createInputRules(schema: Schema): { rules: InputRule[] } {
+  return {
+    rules: [
+      // # Heading
+      textblockTypeInputRule(/^(#)+ $/, schema.nodes.heading, (match) => {
+        console.log(match);
+        return {
+          level: match[1].length,
+        };
+      }),
+    ],
+  };
+}
 </script>
+<style>
+.ProseMirror {
+  @apply px-3 py-2;
+
+  h1 {
+    @apply text-2xl font-bold;
+  }
+}
+</style>
