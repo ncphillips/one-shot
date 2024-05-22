@@ -7,19 +7,18 @@ import { Schema } from "prosemirror-model";
 
 export function createInputRules(schema: Schema): { rules: InputRule[] } {
   return {
-    rules: [headingRule(schema), blockquoteRule(schema)],
+    rules: [...headingRules(schema), ...blockquoteRules(schema)],
   };
 }
 
-const headingRule = (schema: Schema) =>
+const headingRules = (schema: Schema) => [
   textblockTypeInputRule(/^(#+) $/, schema.nodes.heading, (match) => {
     return {
       level: match[1].length,
     };
-  });
+  }),
+];
 
-const blockquoteRule = (schema: Schema) => {
-  const r = wrappingInputRule(/^> $/, schema.nodes.blockquote);
-  console.log(r);
-  return r;
-};
+const blockquoteRules = (schema: Schema) => [
+  wrappingInputRule(/^> $/, schema.nodes.blockquote),
+];
