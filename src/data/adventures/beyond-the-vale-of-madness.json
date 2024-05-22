@@ -1,87 +1,88 @@
 {
-  "name": "Beyond the Vale of Madness",
+  "title": "Beyond the Vale of Madness",
   "author": {
     "name": "J.C. Connors"
   },
   "source": "https://1shotadventures.com/wp-content/uploads/2020/03/Beyond-the-Vale-of-Madness-GURPS.pdf",
-  "scenes": {
-    "1": {
+  "scenes": [
+    {
       "id": 1,
+      "title": "The Mountain Pass",
       "content": "It was already a freezing morning when you set out for the legendary “Castle of Madness” – the mysterious castle that is said to emerge from blizzards once every seven winters. Now, as it grows dark, the mountains’ glacial winds of this valley make the temperature seem hundreds of times colder. Both hands wrap your winter cloak tightly around your body, but somehow you can still feel the ice-sharded winds as if on bare skin.\n\nYou squint your eyes down at your weapon and wonder if it has become frozen to your belt. Nothing alive can possibly live in these temperatures, you reassure yourself, pushing back thoughts of the living dead you’ve heard emerge with the castle.\n\nSoon, you can make out the faint ruined form of the castle up ahead. The old crone’s rotting map was right! Your best guess tells you it’s another hour’s walk in the harsh cold. Before you have time to think about the longer walk, you spot a gaping black opening in the snow. It must be a cave. The crone told you that underground tunnels could also lead into the castle. Could this be one? Or is it the lair of some beast?",
       "next": [
         {
-          "scene": 12,
-          "text": "If you decide to explore the cave"
+          "sceneId": 12,
+          "text": "Explore the cave"
         },
         {
-          "scene": 19,
-          "text": "If you decide to continue your cold trek to the castle"
+          "sceneId": 19,
+          "text": "Continue your cold trek to the castle"
         }
       ]
     },
-    "2": {
+    {
       "id": 2,
       "content": "Double-wrapping your hands to protect them from the cold, you dig under some broken statues. In a few minutes you’ve uncovered a beautiful antique mace, its metal head coated in an unusual blue lacquer.\nDigging some more, you realize something – the weapon still has a frozen hand attached to it! A second later, your boot brushes aside the remains of the man’s face! The blue skin is cracked and broken. Apparently, some warrior died wielding this mace.",
       "next": [
         {
-          "scene": 14,
-          "text": "If you go through the servant’s door"
+          "sceneId": 14,
+          "text": "Go through the servant\\'s door"
         },
         {
-          "scene": 11,
-          "text": "If you go through the guardhouse door"
+          "sceneId": 11,
+          "text": "Go through the guardhouse door"
         }
       ]
     },
-    "3": {
+    {
       "id": 3,
       "content": "Snow crunching underfoot, you jog along the intact half of the castle. Just as you begin to tire, you spot a broken gateway, where once armored guards stood with tall halberds. The portal lies open and shattered and leads into the courtyard of the castle.\nYou swing under the broken gate and look around. Dozens of statues – most crumbled – litter the courtyard. You see two doors beyond the statue graveyard. The smaller one seems to be a servant’s entrance; the other seems to be a guardhouse door.",
       "next": [
         {
-          "scene": 43,
-          "text": "If you search the courtyard"
+          "sceneId": 43,
+          "text": "Search the courtyard"
         },
         {
-          "scene": 14,
-          "text": "If you go through the servant’s door"
+          "sceneId": 14,
+          "text": "Go through the servant’s door"
         },
         {
-          "scene": 11,
-          "text": "If you go through the guardhouse door"
+          "sceneId": 11,
+          "text": "Go through the guardhouse door"
         }
       ]
     },
-    "12": {
+    {
       "id": 12,
       "content": "It feels warmer the moment you step into the cave, though the winds make an eerie whining sound throughout these dark tunnels. Fortunately, you had enough foresight to bring a torch. Stretching your numb fingers several times, you take out your tinderbox and light the torch. The heat seems to melt your very face.\nTaking a deep breath, you walk down the winding tunnels making mental notes of its rock formations in case you get lost. It seems as if someone, or something, walked these tunnels in the recent weeks. In a few minutes, you see that the tunnel turns and branches.",
       "next": [
         {
-          "scene": 9,
-          "text": "If you head down the more trodden path"
+          "sceneId": 9,
+          "text": "Head down the more trodden path"
         },
         {
-          "scene": 22,
-          "text": "If you head down the icier path"
+          "sceneId": 22,
+          "text": "Head down the icier path"
         },
         {
-          "scene": 54,
-          "text": "If you trod down the warmer, rock path"
+          "sceneId": 54,
+          "text": "Trod down the warmer, rock path"
         }
       ]
     },
-    "19": {
+    {
       "id": 19,
       "content": "You stumble another half-hour in the snow. The cave was probably the home to a pack of yetis, or ice trolls. It’s a good thing you avoided it.\nUnfortunately, the cold winds have begun to take their toll. Reduce your FP by 1 and make a Survival (Mountains) roll. If you fail, you take an additional 1d-3 damage from exhaustion and hypothermia.\nYou stare up at the looming castle. Its stone has been covered with sheets of ice as thick as your body. With any luck, you won’t have to climb up the walls to find an entrance.",
       "next": [
         {
-          "scene": 3,
-          "text": "If you decide to circle around the castle looking for an entrance"
+          "sceneId": 3,
+          "text": "Circle around the castle looking for an entrance"
         },
         {
-          "scene": 35,
-          "text": "If you decide to use your pitons and rope to climb the wall to a window"
+          "sceneId": 35,
+          "text": "Use your pitons and rope to climb the wall to a window"
         }
       ]
     }
-  }
+  ]
 }

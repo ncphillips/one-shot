@@ -1,15 +1,16 @@
 <template>
   <main class="my-2 mx-4">
-    <h1 class="text-xl bold">{{ adventure?.name }}</h1>
+    <h1>{{ adventure?.title }}</h1>
     <section v-if="currentScene" id="current-scene">
+      <h2>{{ currentScene.title }}</h2>
       <p class="whitespace-pre-wrap">{{ currentScene.content }}</p>
-      <ul>
+      <h2>What do you do next?</h2>
+      <ul class="list-disc list-inside">
         <li
           v-for="nextScene in currentScene.next"
           :key="nextScene.sceneId"
-          class="mt-1"
+          class="mt-1 list-item"
         >
-          {{ nextScene.text }}, go to
           <router-link
             class="underline"
             :to="{
@@ -17,7 +18,7 @@
               params: { adventureId: 1, sceneId: nextScene.sceneId },
             }"
           >
-            Scene {{ nextScene.sceneId }}
+            {{ nextScene.text }}
           </router-link>
         </li>
       </ul>

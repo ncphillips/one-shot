@@ -1,6 +1,8 @@
+import { Scene } from "./scene";
+
 export type Adventure = {
-  name: string;
+  title: string;
   author: Author;
   source: string;
-  scenes: Record<number, Scene>;
+  scenes: Scene[];
 };

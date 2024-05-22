@@ -4,6 +4,11 @@ import Index from "./pages/Index.vue";
 const routes: RouterOptions["routes"] = [
   { path: "/", component: Index }, //
   {
+    name: "adventure.edit",
+    path: "/adventures/:adventureSlug/edit",
+    component: () => import("./pages/Adventures/Edit.vue"),
+  },
+  {
     name: "adventure.scene.show",
     path: "/adventures/:adventureSlug/scenes/:sceneId",
     component: () => import("./pages/Scene/Show.vue"),
