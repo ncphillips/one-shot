@@ -15,12 +15,9 @@ import { EditorView } from "prosemirror-view";
 import { undo, redo, history } from "prosemirror-history";
 import { keymap } from "prosemirror-keymap";
 import { baseKeymap } from "prosemirror-commands";
-import { Node, Schema } from "prosemirror-model";
-import {
-  InputRule,
-  inputRules,
-  textblockTypeInputRule,
-} from "prosemirror-inputrules";
+import { Node } from "prosemirror-model";
+import { inputRules } from "prosemirror-inputrules";
+import { createInputRules } from "./prosemirror-editor/input-rules";
 
 const props = defineProps<{
   modelValue: any;
@@ -97,20 +94,6 @@ function createCustomKeymap(): Record<string, Command> {
   return {
     "Mod-z": undo,
     "Mod-y": redo,
-  };
-}
-
-function createInputRules(schema: Schema): { rules: InputRule[] } {
-  return {
-    rules: [
-      // # Heading
-      textblockTypeInputRule(/^(#)+ $/, schema.nodes.heading, (match) => {
-        console.log(match);
-        return {
-          level: match[1].length,
-        };
-      }),
-    ],
   };
 }
 </script>
