@@ -1,7 +1,7 @@
 <template>
   <div
     ref="editorEl"
-    class="bg-slate-50 border rounded border-slate-300 w-full min-h-8"
+    class="whitespace-pre-wrap bg-slate-50 border rounded border-slate-300 w-full min-h-8"
   ></div>
 </template>
 <script setup lang="ts">
@@ -18,7 +18,7 @@ import { baseKeymap } from "prosemirror-commands";
 import { Node } from "prosemirror-model";
 
 const props = defineProps<{
-  modelValue: Node;
+  modelValue: any;
 }>();
 
 const modelValue = useVModel(props, "modelValue");
@@ -52,7 +52,9 @@ function createEditor(target: HTMLElement, modelValue: Ref<Node>) {
       view.updateState(newState);
 
       if (transaction.docChanged) {
-        modelValue.value = newState.doc.toJSON();
+        let doc = newState.doc.toJSON();
+        doc.attrs = { internalChange: true };
+        modelValue.value = doc;
       }
 
       emit("dispatch:transaction", transaction);
@@ -60,14 +62,20 @@ function createEditor(target: HTMLElement, modelValue: Ref<Node>) {
   });
 
   watch(modelValue, (newValue) => {
+    if (newValue.attrs?.internalChange) {
+      return;
+    }
+
     view.updateState(createState(newValue));
   });
 
   emit("init:view", view);
 }
 
-function createState(node?: Node) {
-  let doc: Node | undefined = node ? schema.nodeFromJSON(node) : undefined;
+function createState(jsonDoc?: any) {
+  let doc: Node | undefined = jsonDoc
+    ? schema.nodeFromJSON(jsonDoc)
+    : undefined;
 
   const state = EditorState.create({
     doc,
