@@ -15,21 +15,8 @@
   </main>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
 import ProsemirrorEditor from "../components/ProsemirrorEditor.vue";
+import { useLocalStorage } from "@vueuse/core";
 
-const content = ref({
-  type: "doc",
-  content: [
-    {
-      type: "paragraph",
-      content: [
-        {
-          type: "text",
-          text: "tests",
-        },
-      ],
-    },
-  ],
-});
+const content = useLocalStorage("prosemirror-content", "");
 </script>
