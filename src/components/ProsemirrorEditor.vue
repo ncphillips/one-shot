@@ -34,13 +34,9 @@ const editorEl = ref<HTMLElement | null>(null);
 onMounted(() => {
   const el = editorEl.value;
 
-  if (!el) {
-    console.log("Editor element not found!");
-    // TODO: Error handling
-    return;
+  if (el) {
+    createEditor(el, modelValue);
   }
-
-  createEditor(el, modelValue);
 });
 
 function createEditor(target: HTMLElement, modelValue: Ref<Node>) {
