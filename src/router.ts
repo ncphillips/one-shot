@@ -8,6 +8,11 @@ const routes: RouterOptions["routes"] = [
     path: "/adventures/:adventureSlug/scenes/:sceneId",
     component: () => import("./pages/Scene/Show.vue"),
   },
+  {
+    name: "prosemirror-playground",
+    path: "/prosemirror-playground",
+    component: () => import("./pages/ProsemirrorPlayground.vue"),
+  },
 ];
 
 export const router = createRouter({
