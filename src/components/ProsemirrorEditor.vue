@@ -9,16 +9,9 @@ import { onMounted, ref, Ref, watch } from "vue";
 import { useVModel } from "@vueuse/core";
 
 // Prosemirror
-import { schema } from "./prosemirror-editor/schema";
-import { EditorState } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
-import { history } from "prosemirror-history";
-import { keymap } from "prosemirror-keymap";
-import { baseKeymap } from "prosemirror-commands";
 import { Node } from "prosemirror-model";
-import { inputRules } from "prosemirror-inputrules";
-import { createInputRules } from "./prosemirror-editor/input-rules";
-import { createCustomKeymap } from "./prosemirror-editor/keymap";
+import { createState } from "./prosemirror-editor/state";
 
 const props = defineProps<{
   modelValue: any;
@@ -43,8 +36,12 @@ onMounted(() => {
 });
 
 function createEditor(target: HTMLElement, modelValue: Ref<Node>) {
+  let state = createState(modelValue.value);
+
+  emit("init:state", state);
+
   let view = new EditorView(target, {
-    state: createState(modelValue.value),
+    state,
     dispatchTransaction(transaction) {
       let newState = view.state.apply(transaction);
 
@@ -66,29 +63,11 @@ function createEditor(target: HTMLElement, modelValue: Ref<Node>) {
     }
 
     view.updateState(createState(newValue));
+
+    emit("init:state", state);
   });
 
   emit("init:view", view);
-}
-
-function createState(jsonDoc?: any) {
-  let doc: Node | undefined = jsonDoc
-    ? schema.nodeFromJSON(jsonDoc)
-    : undefined;
-
-  const state = EditorState.create({
-    doc,
-    schema,
-    plugins: [
-      history(),
-      keymap(createCustomKeymap()),
-      keymap(baseKeymap),
-      inputRules(createInputRules(schema)),
-    ],
-  });
-
-  emit("init:state", state);
-  return state;
 }
 </script>
 <style>
@@ -96,7 +75,39 @@ function createState(jsonDoc?: any) {
   @apply px-3 py-2;
 
   h1 {
-    @apply text-2xl font-bold;
+    @apply text-5xl font-bold;
+  }
+
+  h1:not(:first-child) {
+    @apply mt-6;
+  }
+
+  h2 {
+    @apply text-4xl font-bold mt-5;
+  }
+
+  h3 {
+    @apply text-3xl font-bold mt-4;
+  }
+
+  h4 {
+    @apply text-2xl font-bold mt-3;
+  }
+
+  h5 {
+    @apply text-xl font-bold mt-2;
+  }
+
+  h6 {
+    @apply text-lg font-bold mt-1;
+  }
+
+  blockquote {
+    @apply border-l-4 border-slate-300 pl-2;
+  }
+
+  p {
+    @apply my-2;
   }
 }
 </style>
