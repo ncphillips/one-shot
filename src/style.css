@@ -8,30 +8,46 @@ body {
 
 h1 {
   @apply text-5xl font-bold;
-}
 
-h1:not(:first-child) {
-  @apply mt-6;
+  &:not(:first-child) {
+    @apply mt-6;
+  }
 }
 
 h2 {
-  @apply text-4xl font-bold mt-5;
+  @apply text-4xl font-bold;
+
+  &:not(:first-child) {
+    @apply mt-5;
+  }
 }
 
 h3 {
-  @apply text-3xl font-bold mt-4;
+  @apply text-3xl font-bold;
+  &:not(:first-child) {
+    @apply mt-4;
+  }
 }
 
 h4 {
-  @apply text-2xl font-bold mt-3;
+  @apply text-2xl font-bold;
+  &:not(:first-child) {
+    @apply mt-3;
+  }
 }
 
 h5 {
-  @apply text-xl font-bold mt-2;
+  @apply text-xl font-bold;
+  &:not(:first-child) {
+    @apply mt-2;
+  }
 }
 
 h6 {
-  @apply text-lg font-bold mt-1;
+  @apply text-lg font-bold;
+  &:not(:first-child) {
+    @apply mt-1;
+  }
 }
 
 blockquote {

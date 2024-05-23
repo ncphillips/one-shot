@@ -1,20 +1,43 @@
 <template>
-  <h1>Solo GURPS</h1>
+  <main class="px-3 py-2">
+    <h1 class="mb-5">Solo GURPS</h1>
 
-  Num adventures: {{ jsonFiles.length }}
-  <ul>
-    <li v-for="file in jsonFiles" :key="file.slug">
-      <RouterLink
-        class="underline"
-        :to="{
-          name: 'adventure.scene.show',
-          params: { adventureSlug: file.slug, sceneId: 1 },
-        }"
+    <ul class="flex flex-col gap-4">
+      <li
+        v-for="file in jsonFiles"
+        :key="file.slug"
+        class="flex flex-col border rounded shadow bg-white p-4"
       >
-        {{ file.title }} by <em>{{ file.author.name }}</em>
-      </RouterLink>
-    </li>
-  </ul>
+        <div>
+          <h2>{{ file.title }}</h2>
+          <p>
+            by <em>{{ file.author.name }}</em>
+          </p>
+        </div>
+
+        <div class="flex gap-2">
+          <RouterLink
+            class="btn primary sm"
+            :to="{
+              name: 'adventure.scene.show',
+              params: { adventureSlug: file.slug, sceneId: 1 },
+            }"
+          >
+            Play
+          </RouterLink>
+          <RouterLink
+            class="btn secondary sm"
+            :to="{
+              name: 'adventure.edit',
+              params: { adventureSlug: file.slug },
+            }"
+          >
+            Edit
+          </RouterLink>
+        </div>
+      </li>
+    </ul>
+  </main>
 </template>
 
 <script setup lang="ts">
