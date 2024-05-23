@@ -30,6 +30,17 @@
           Add Scene
         </button>
       </div>
+      <button
+        class="btn sm white"
+        @click.prevent="
+          adventure.scenes = adventure.scenes.sort(
+            (a: any, b: any) => a.id - b.id
+          )
+        "
+      >
+        Sort Scenes
+      </button>
+
       <fieldset
         v-for="(scene, key) of adventure.scenes"
         :key="key"
@@ -105,6 +116,15 @@
                 @click.prevent="addScene({ id: sceneReference.sceneId })"
               >
                 Add Missing Scene
+              </button>
+              <button
+                type="button"
+                class="btn sm danger"
+                @click.prevent="
+                  scene.next.splice(scene.next.indexOf(sceneReference), 1)
+                "
+              >
+                Remove
               </button>
             </div>
             <div v-if="!sceneExists(sceneReference.sceneId)">
