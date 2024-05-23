@@ -15,6 +15,7 @@ import { createState } from "./prosemirror-editor/state";
 
 const props = defineProps<{
   modelValue: any;
+  disabled?: boolean;
 }>();
 
 const modelValue = useVModel(props, "modelValue");
@@ -56,6 +57,10 @@ function createEditor(target: HTMLElement, modelValue: Ref<Node>) {
       emit("dispatch:transaction", transaction);
     },
   });
+
+  if (props.disabled) {
+    view.dom.contentEditable = "false";
+  }
 
   watch(modelValue, (newValue) => {
     if (newValue.attrs?.internalChange) {
