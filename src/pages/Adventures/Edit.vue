@@ -188,7 +188,7 @@ onMounted(async () => {
   if (
     backupData &&
     !deepEquals(currentData, backupData) &&
-    !confirm("You have unsaved changes. Do you want to continue editing?")
+    confirm("You have unsaved changes. Do you want to continue editing?")
   ) {
     data = backupData;
   } else {
