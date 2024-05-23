@@ -7,7 +7,7 @@
   "scenes": [
     {
       "id": "1",
-      "title": "The Mountain Pass",
+      "title": "The Mountain Pass!",
       "content": {
         "type": "doc",
         "content": [
@@ -16,7 +16,25 @@
             "content": [
               {
                 "type": "text",
-                "text": "It was already a freezing morning when you set out for the legendary “Castle of Madness” – the mysterious castle that is said to emerge from blizzards once every seven winters. Now, as it grows dark, the mountains’ glacial winds of this valley make the temperature seem hundreds of times colder. Both hands wrap your winter cloak tightly around your body, but somehow you can still feel the ice-sharded winds as if on bare skin. You squint your eyes down at your weapon and wonder if it has become frozen to your belt. Nothing alive can possibly live in these temperatures, you reassure yourself, pushing back thoughts of the living dead you’ve heard emerge with the castle. Soon, you can make out the faint ruined form of the castle up ahead. The old crone’s rotting map was right! Your best guess tells you it’s another hour’s walk in the harsh cold. Before you have time to think about the longer walk, you spot a gaping black opening in the snow. It must be a cave. The crone told you that underground tunnels could also lead into the castle. Could this be one? Or is it the lair of some beast? "
+                "text": "It was already a freezing morning when you set out for the legendary “Castle of Madness” – the mysterious castle that is said to emerge from blizzards once every seven winters. Now, as it grows dark, the mountains’ glacial winds of this valley make the temperature seem hundreds of times colder. Both hands wrap your winter cloak tightly around your body, but somehow you can still feel the ice-sharded winds as if on bare skin."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "You squint your eyes down at your weapon and wonder if it has become frozen to your belt. Nothing alive can possibly live in these temperatures, you reassure yourself, pushing back thoughts of the living dead you’ve heard emerge with the castle."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Soon, you can make out the faint ruined form of the castle up ahead. The old crone’s rotting map was right! Your best guess tells you it’s another hour’s walk in the harsh cold. Before you have time to think about the longer walk, you spot a gaping black opening in the snow. It must be a cave. The crone told you that underground tunnels could also lead into the castle. Could this be one? Or is it the lair of some beast? "
               }
             ]
           }
@@ -46,7 +64,47 @@
             "content": [
               {
                 "type": "text",
-                "text": "Double-wrapping your hands to protect them from the cold, you dig under some broken statues. In a few minutes you’ve uncovered a beautiful antique mace, its metal head coated in an unusual blue lacquer. Digging some more, you realize something – the weapon still has a frozen hand attached to it! A second later, your boot brushes aside the remains of the man’s face! The blue skin is cracked and broken. Apparently, some warrior died wielding this mace. "
+                "text": "Double-wrapping your hands to protect them from the cold, you dig under some broken statues. In a few minutes you’ve uncovered a beautiful "
+              },
+              {
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "strong"
+                  }
+                ],
+                "text": "antique mace"
+              },
+              {
+                "type": "text",
+                "text": ", its metal head coated in an unusual blue lacquer."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Digging some more, you realize something – the weapon still has a frozen hand attached to it! A second later, your boot brushes aside the remains of the man’s face! The blue skin is cracked and broken. Apparently, some warrior died wielding this mace. "
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Make a Will roll, modified by Fearlessness if you have it. If you succeed, you may pry the weapon lose. Otherwise, you have no stomach for such matters and decide to abandon your search."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "(If you take this mace, it does sw+2 cr damage, requires Axe/Maceskill, requires ST 12, and weighs 5 lbs.)"
               }
             ]
           }
@@ -188,6 +246,93 @@
           "internalChange": true
         }
       },
+      "next": []
+    },
+    {
+      "id": 14,
+      "title": "The Servant's Door",
+      "content": "",
+      "next": []
+    },
+    {
+      "id": 11,
+      "title": "The Guardhouse Door",
+      "content": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "You approach the guardhouse door and push on it. No luck. Apparently, the guardhouse door is either locked or frozen shut."
+              }
+            ]
+          }
+        ],
+        "attrs": {
+          "internalChange": true
+        }
+      },
+      "next": [
+        {
+          "text": "Use your dagger to try picking the lock",
+          "sceneId": "18"
+        },
+        {
+          "text": "Try to force the door open",
+          "sceneId": ""
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "title": "Picking the Guardhouse Door",
+      "content": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "You kneel down in the snow and peer through the keyhole. Just as you suspected... the door is locked with an older type of lock. Several stone pegs keep the door in place. Your knife might be able to do the trick, but it’s formidable."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Since the door uses an old stone lock, it is easier to defeat than a more modern, iron lock. To pick the lock, make a Lockpicking roll at +2 (or DX-3 if you do not have the skill)"
+              }
+            ]
+          }
+        ],
+        "attrs": {
+          "internalChange": true
+        }
+      },
+      "next": [
+        {
+          "text": "Success",
+          "sceneId": ""
+        },
+        {
+          "text": "Failure: Try breaking down the door",
+          "sceneId": "40"
+        },
+        {
+          "text": "Go to the servant's door",
+          "sceneId": 14
+        }
+      ]
+    },
+    {
+      "id": "40",
+      "title": "Forcing the Guardhouse Door",
+      "content": "",
       "next": []
     }
   ]
