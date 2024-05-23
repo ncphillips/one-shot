@@ -1,7 +1,7 @@
 import { SceneReference } from "./scene-reference";
 
 export type Scene = {
-  id: number;
+  id: string;
   title: string;
   content: string;
   next: SceneReference[];

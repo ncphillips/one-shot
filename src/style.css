@@ -43,19 +43,20 @@ p {
 }
 
 input[type="text"],
+input[type="number"],
 textarea {
-  @apply px-2 py-1 border border-slate-400 rounded w-full;
+  @apply px-2 py-1 border border-slate-400 rounded w-full shadow-inset shadow-slate-200;
 
   &:focus {
-    @apply outline-none border-teal-500;
+    @apply outline-none border-teal-500 shadow-teal-50;
   }
 }
 
 select {
-  @apply bg-white px-2 py-1.5 border border-slate-400 rounded w-full;
+  @apply bg-white px-2 py-1.5 border border-slate-400 rounded w-full shadow-inset shadow-slate-200;
 
   &:focus {
-    @apply outline-none border-teal-500;
+    @apply outline-none border-teal-500 shadow-teal-50;
   }
 }
 
@@ -85,4 +86,32 @@ form {
   &:active {
     @apply bg-teal-900;
   }
+}
+
+.btn.white {
+  @apply bg-white text-slate-900 border border-slate-400 shadow;
+
+  &:hover {
+    @apply bg-slate-50;
+  }
+
+  &:active {
+    @apply bg-slate-100;
+  }
+}
+
+.btn.danger {
+  @apply bg-red-700 border border-red-900 shadow;
+
+  &:hover {
+    @apply bg-red-800;
+  }
+
+  &:active {
+    @apply bg-red-900;
+  }
+}
+
+.btn.sm {
+  @apply px-2 py-1 text-sm;
 }
