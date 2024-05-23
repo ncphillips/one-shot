@@ -66,7 +66,7 @@
         </div>
         <label>
           <span class="block">Content</span>
-          <textarea v-model="scene.content" rows="8"></textarea>
+          <prosemirror-editor v-model="scene.content" />
         </label>
         <fieldset>
           <legend>What next?</legend>
@@ -134,6 +134,7 @@ import { Adventure } from "../../types/adventure";
 import { useToaster } from "../../composables/useToaster";
 import { Scene } from "../../types/scene";
 import { useLocalStorage } from "@vueuse/core";
+import ProsemirrorEditor from "../../components/ProsemirrorEditor.vue";
 
 const { showToast } = useToaster();
 
@@ -185,6 +186,7 @@ onMounted(async () => {
   }
 
   if (
+    backupData &&
     !deepEquals(currentData, backupData) &&
     !confirm("You have unsaved changes. Do you want to continue editing?")
   ) {

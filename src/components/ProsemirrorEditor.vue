@@ -70,8 +70,3 @@ function createEditor(target: HTMLElement, modelValue: Ref<Node>) {
   emit("init:view", view);
 }
 </script>
-<style>
-.ProseMirror {
-  @apply px-3 py-2;
-}
-</style>
