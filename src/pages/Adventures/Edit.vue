@@ -30,6 +30,20 @@
           Add Scene
         </button>
       </div>
+
+      <details>
+        <summary>Scene Index</summary>
+
+        <ul class="list-inside list-disc">
+          <li
+            v-for="(scene, key) of adventure.scenes"
+            @click.prevent="focusOnSceneByIndex(key)"
+            class="cursor-pointer"
+          >
+            {{ scene.id }}: {{ scene.title }}
+          </li>
+        </ul>
+      </details>
       <button
         class="btn sm white"
         @click.prevent="
@@ -143,6 +157,20 @@
             Add Path
           </button>
         </fieldset>
+        <button
+          type="button"
+          class="btn primary"
+          @click.prevent="
+            adventure.scenes.splice(key + 1, 0, {
+              id: '',
+              title: '',
+              content: '',
+              next: [],
+            })
+          "
+        >
+          Add Scene After This one
+        </button>
       </fieldset>
     </form>
   </main>
