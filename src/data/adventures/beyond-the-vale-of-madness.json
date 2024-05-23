@@ -1,13 +1,13 @@
 {
   "title": "Beyond the Vale of Madness",
+  "source": "https://1shotadventures.com/wp-content/uploads/2020/03/Beyond-the-Vale-of-Madness-GURPS.pdf",
   "author": {
     "name": "J.C. Connors"
   },
-  "source": "https://1shotadventures.com/wp-content/uploads/2020/03/Beyond-the-Vale-of-Madness-GURPS.pdf",
   "scenes": [
     {
-      "id": 1,
-      "title": "The Mountain Pass",
+      "id": "1",
+      "title": "The Mountain Pass!",
       "content": "It was already a freezing morning when you set out for the legendary “Castle of Madness” – the mysterious castle that is said to emerge from blizzards once every seven winters. Now, as it grows dark, the mountains’ glacial winds of this valley make the temperature seem hundreds of times colder. Both hands wrap your winter cloak tightly around your body, but somehow you can still feel the ice-sharded winds as if on bare skin.\n\nYou squint your eyes down at your weapon and wonder if it has become frozen to your belt. Nothing alive can possibly live in these temperatures, you reassure yourself, pushing back thoughts of the living dead you’ve heard emerge with the castle.\n\nSoon, you can make out the faint ruined form of the castle up ahead. The old crone’s rotting map was right! Your best guess tells you it’s another hour’s walk in the harsh cold. Before you have time to think about the longer walk, you spot a gaping black opening in the snow. It must be a cave. The crone told you that underground tunnels could also lead into the castle. Could this be one? Or is it the lair of some beast?",
       "next": [
         {
@@ -32,7 +32,8 @@
           "sceneId": 11,
           "text": "Go through the guardhouse door"
         }
-      ]
+      ],
+      "title": "Under the Statues"
     },
     {
       "id": 3,
@@ -50,7 +51,8 @@
           "sceneId": 11,
           "text": "Go through the guardhouse door"
         }
-      ]
+      ],
+      "title": "The Broken Gateway"
     },
     {
       "id": 12,
@@ -68,7 +70,8 @@
           "sceneId": 54,
           "text": "Trod down the warmer, rock path"
         }
-      ]
+      ],
+      "title": "The Cave"
     },
     {
       "id": 19,
@@ -82,7 +85,14 @@
           "sceneId": 35,
           "text": "Use your pitons and rope to climb the wall to a window"
         }
-      ]
+      ],
+      "title": "A Freezing Path"
+    },
+    {
+      "id": 35,
+      "title": "The Wall Climb",
+      "content": "You remove your rope and grapple and find a nice target – a broken gargoyle near an open window. To climb up the steep, icy castle wall, you’ll need to make a Climbing roll at -3 (or DX-8 or ST-8 if you do not have the skill!).",
+      "next": []
     }
   ]
 }

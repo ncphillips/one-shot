@@ -1,9 +1,11 @@
 <template>
   <main class="my-2 mx-4">
-    <form v-if="adventure" @submit="copyFormToClipboard()">
+    <form v-if="adventure" @submit="onSave()">
       <h1>Edit Adventure</h1>
 
-      <button type="submit" class="btn primary">Copy JSON</button>
+      <button @click.prevent="onSave()" type="button" class="btn primary">
+        Copy JSON
+      </button>
 
       <label>
         <span class="block">Title</span>
@@ -112,6 +114,14 @@
               </p>
             </div>
           </div>
+
+          <button
+            type="button"
+            class="btn primary"
+            @click.prevent="scene.next.push({ text: '', sceneId: '' })"
+          >
+            Add Path
+          </button>
         </fieldset>
       </fieldset>
     </form>
@@ -119,10 +129,13 @@
 </template>
 <script lang="ts" setup>
 import { useRouteParams } from "@vueuse/router";
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, watch } from "vue";
 import { Adventure } from "../../types/adventure";
 import { useToaster } from "../../composables/useToaster";
 import { Scene } from "../../types/scene";
+import { useLocalStorage } from "@vueuse/core";
+
+const { showToast } = useToaster();
 
 const adventureId = useRouteParams<string>("adventureSlug");
 
@@ -135,19 +148,55 @@ const adventure = reactive<Adventure>({
   scenes: [],
 });
 
-const { showToast } = useToaster();
+/**
+ * Backup
+ */
+const adventureBackup = useLocalStorage(`adventure:${adventureId.value}`, "", {
+  serializer: {
+    read: JSON.parse,
+    write: JSON.stringify,
+  },
+});
+
+watch(
+  adventure,
+  () => {
+    adventureBackup.value = adventure;
+  },
+  { deep: true }
+);
+
+/**
+ * Load adventure data
+ */
 
 onMounted(async () => {
-  try {
-    const data = await import(
-      `../../data/adventures/${adventureId.value}.json`
-    );
-    for (const key in data.default) {
-      // @ts-ignore
-      adventure[key] = data.default[key];
-    }
-  } catch (error) {
-    console.error("Error importing JSON data:", error);
+  let data;
+  let backupData;
+  let currentData = (
+    await import(`../../data/adventures/${adventureId.value}.json`)
+  ).default;
+
+  const backup = localStorage.getItem(`adventure:${adventureId.value}`);
+  if (backup) {
+    try {
+      backupData = JSON.parse(backup);
+    } catch {}
+  }
+
+  if (
+    !deepEquals(currentData, backupData) &&
+    !confirm("You have unsaved changes. Do you want to continue editing?")
+  ) {
+    data = backupData;
+  } else {
+    localStorage.removeItem(`adventure:${adventureId.value}`);
+    data = currentData;
+  }
+
+  for (const key in data) {
+    // @ts-ignore
+    adventure[key] = data[key];
   }
 });
 
@@ -195,5 +244,19 @@ function findScenesThatLinkToThisScene(sceneId: string) {
   return adventure.scenes.filter((scene) =>
     scene.next.some((sceneReference) => sceneReference.sceneId === sceneId)
   );
+}
+
+function onSave() {
+  clearAdventureBackup();
+  copyFormToClipboard();
+  showToast("Saved!");
+}
+
+function clearAdventureBackup() {
+  localStorage.removeItem(`adventure:${adventureId.value}`);
+}
+
+function deepEquals(a: any, b: any) {
+  return JSON.stringify(a) === JSON.stringify(b);
 }
 </script>
