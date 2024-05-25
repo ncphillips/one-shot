@@ -3,6 +3,14 @@ import {RollResult} from "./roll-result"
 import {range} from "./range.ts";
 
 describe("RollResult", () => {
+  describe("effectiveSkillLevel", () => {
+    it("equals the score + modifier", () => {
+      expect(new RollResult(10, 9, 0).effectiveSkillLevel).toBe(10)
+      expect(new RollResult(10, 9, -1).effectiveSkillLevel).toBe(9)
+      expect(new RollResult(8, 9, 4).effectiveSkillLevel).toBe(12)
+    })
+  })
+
   describe("success", () => {
     it("is true if value < effective skill level", () => {
       const result = new RollResult(10, 9)
