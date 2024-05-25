@@ -1,7 +1,7 @@
-import {RollResult} from "./roll-result.ts";
+import {SuccessRoll} from "./success-roll.ts";
 
 export type Rollable = {
   score: number;
-  roll(): RollResult
+  roll(): SuccessRoll
 }
 

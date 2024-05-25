@@ -1,7 +1,7 @@
 import {d6} from "./d6.ts";
 import {Buyable} from "./buyable";
 import {Rollable} from "./rollable";
-import {RollResult} from "./roll-result.ts";
+import {SuccessRoll} from "./success-roll.ts";
 
 export class Attribute implements Buyable, Rollable {
   score = 10
@@ -15,12 +15,12 @@ export class Attribute implements Buyable, Rollable {
     return this.pointPerLevel * (this.score - 10);
   }
 
-  roll(modifier: number = 0): RollResult {
+  roll(modifier: number = 0): SuccessRoll {
     const firstDie = d6();
     const secondDie = d6();
     const thirdDie = d6();
     const value = firstDie + secondDie + thirdDie;
 
-    return new RollResult(this.score, value, modifier)
+    return new SuccessRoll(this.score, value, modifier)
   }
 }

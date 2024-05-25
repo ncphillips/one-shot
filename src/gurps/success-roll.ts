@@ -1,4 +1,4 @@
-export class RollResult {
+export class SuccessRoll {
   constructor(
     public readonly skillLevel: number,
     public readonly value: number,

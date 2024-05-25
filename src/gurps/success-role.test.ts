@@ -1,33 +1,33 @@
 import {describe, expect, it} from "vitest"
-import {RollResult} from "./roll-result"
+import {SuccessRoll} from "./success-roll.ts"
 import {range} from "./range.ts";
 
-describe("RollResult", () => {
+describe("SuccessRoll", () => {
   describe("effectiveSkillLevel", () => {
     it("equals the score + modifier", () => {
-      expect(new RollResult(10, 9, 0).effectiveSkillLevel).toBe(10)
-      expect(new RollResult(10, 9, -1).effectiveSkillLevel).toBe(9)
-      expect(new RollResult(8, 9, 4).effectiveSkillLevel).toBe(12)
+      expect(new SuccessRoll(10, 9, 0).effectiveSkillLevel).toBe(10)
+      expect(new SuccessRoll(10, 9, -1).effectiveSkillLevel).toBe(9)
+      expect(new SuccessRoll(8, 9, 4).effectiveSkillLevel).toBe(12)
     })
   })
 
   describe("success", () => {
     it("is true if value < effective skill level", () => {
-      const result = new RollResult(10, 9)
+      const roll = new SuccessRoll(10, 9)
 
-      expect(result.success).toBe(true)
+      expect(roll.success).toBe(true)
     })
 
     it("is true if value == score", () => {
-      const result = new RollResult(13, 13)
+      const roll = new SuccessRoll(13, 13)
 
-      expect(result.success).toBe(true)
+      expect(roll.success).toBe(true)
     })
 
     it("is false if value > score", () => {
-      const result = new RollResult(10, 11)
+      const roll= new SuccessRoll(10, 11)
 
-      expect(result.success).toBe(false)
+      expect(roll.success).toBe(false)
     })
   })
 
@@ -35,51 +35,51 @@ describe("RollResult", () => {
     describe("for a roll of 3, 4", () => {
       it("is always true", () => {
         range(1, 22).forEach((effectiveSkillLevel) => {
-          [3, 4].forEach((roll) => {
-            const result = new RollResult(effectiveSkillLevel, roll)
+          [3, 4].forEach((value) => {
+            const roll = new SuccessRoll(effectiveSkillLevel, value)
 
-            expect(result.critSuccess).toBe(true)
+            expect(roll.critSuccess).toBe(true)
           })
         })
       })
     })
 
     describe("for a roll of 5", () => {
-      const roll = 5;
+      const value = 5;
 
       it("is false with a skill of (1, 14)", () => {
         range(1, 14).forEach((effectiveSkillLevel) => {
-          const result = new RollResult(effectiveSkillLevel, roll)
+          const roll = new SuccessRoll(effectiveSkillLevel, value)
 
-          expect(result.critSuccess).toBe(false)
+          expect(roll.critSuccess).toBe(false)
         })
       })
 
       it("is true with a skill of (15, 22)", () => {
         range(15, 22).forEach((effectiveSkillLevel) => {
-          const result = new RollResult(effectiveSkillLevel, roll)
+          const roll = new SuccessRoll(effectiveSkillLevel, value)
 
-          expect(result.critSuccess).toBe(true)
+          expect(roll.critSuccess).toBe(true)
         })
       })
     })
 
     describe("for a roll of 6", () => {
-      const roll = 6
+      const value = 6
 
       it("is false with a skill of (1, 15)", () => {
         range(1, 15).forEach((effectiveSkillLevel) => {
-          const result = new RollResult(effectiveSkillLevel, roll)
+          const roll = new SuccessRoll(effectiveSkillLevel, value)
 
-          expect(result.critSuccess).toBe(false)
+          expect(roll.critSuccess).toBe(false)
         })
       })
 
       it("is true with a skill of (16, 22)", () => {
         range(16, 22).forEach((effectiveSkillLevel) => {
-          const result = new RollResult(effectiveSkillLevel, roll)
+          const roll = new SuccessRoll(effectiveSkillLevel, value)
 
-          expect(result.critSuccess).toBe(true)
+          expect(roll.critSuccess).toBe(true)
         })
       })
     })
@@ -89,29 +89,29 @@ describe("RollResult", () => {
     describe("for a roll of 18", () => {
       it("is always true", () => {
         range(1, 22).forEach((effectiveSkillLevel) => {
-          const result = new RollResult(effectiveSkillLevel, 18)
+          const roll = new SuccessRoll(effectiveSkillLevel, 18)
 
-          expect(result.critFailure).toBe(true)
+          expect(roll.critFailure).toBe(true)
         })
       })
     })
 
     describe("for a roll == 17", () => {
-      const roll = 17;
+      const value = 17;
 
       it("is true with a skill <= 15", () => {
         range(1, 15).forEach((effectiveSkillLevel) => {
-          const result = new RollResult(effectiveSkillLevel, roll)
+          const roll = new SuccessRoll(effectiveSkillLevel, value)
 
-          expect(result.critFailure).toBe(true)
+          expect(roll.critFailure).toBe(true)
         })
       })
 
       it("is false with a skill of (16, 22)", () => {
         range(16, 22).forEach((effectiveSkillLevel) => {
-          const result = new RollResult(effectiveSkillLevel, roll)
+          const roll = new SuccessRoll(effectiveSkillLevel, value)
 
-          expect(result.critFailure).toBe(false)
+          expect(roll.critFailure).toBe(false)
         })
       })
     })
@@ -119,11 +119,11 @@ describe("RollResult", () => {
     describe("a roll of 10 + effective skill level", () => {
       it("is true", () => {
         range(5, 6).forEach((effectiveSkillLevel) => {
-          let roll = effectiveSkillLevel + 10;
+          let value = effectiveSkillLevel + 10;
 
-          const result = new RollResult(effectiveSkillLevel, roll)
+          const roll = new SuccessRoll(effectiveSkillLevel, value)
 
-          expect(result.critFailure, `Expected failure roll(${roll}) with esl(${effectiveSkillLevel})`).toBe(true)
+          expect(roll.critFailure, `Expected failure roll(${roll}) with esl(${effectiveSkillLevel})`).toBe(true)
         })
       })
     })
