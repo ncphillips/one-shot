@@ -1,5 +1,5 @@
-import {SuccessRoll} from "./success-roll.ts";
-import {d6} from "./d6.ts";
+import {SuccessRoll} from "../success-roll.ts";
+import {d6} from "../dice/d6.ts";
 
 type Cost = {
   amount: number

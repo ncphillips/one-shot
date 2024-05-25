@@ -1,10 +1,10 @@
 import {beforeEach, describe, expect, it, Mock, test, vi,} from "vitest";
 import {Attribute} from "./attribute.ts";
-import {d6 as mockedD6} from "./d6";
+import {d6 as mockedD6} from "../dice/d6";
 
 const d6 = mockedD6 as Mock<[], number>
 
-vi.mock("./d6", () => {
+vi.mock("../dice/d6", () => {
   let d6Mock = vi.fn(() => 1);
 
   d6Mock.mockReturnValue(1);
