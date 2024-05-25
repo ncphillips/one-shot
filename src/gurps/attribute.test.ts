@@ -26,7 +26,7 @@ describe("Attribute", () => {
       expect(d6).toHaveBeenCalledTimes(3)
     })
 
-    describe("returns the sum of the 3d6", () => {
+    describe("returns a resulting value that sums the 3d6", () => {
       const rolls = [
         [1, 1, 1],
         [2, 1, 2],
@@ -35,7 +35,7 @@ describe("Attribute", () => {
         [6, 6, 6],
         [6, 1, 5]
       ]
-      test.each(rolls)("when the rolls are %d, %d, %d", (first, second, third) => {
+      test.each(rolls)("Example: (%d, %d, %d)", (first, second, third) => {
         const attribute = new Attribute(10)
 
         console.log("first", first)
