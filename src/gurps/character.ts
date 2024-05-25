@@ -1,21 +1,7 @@
 import {Attribute} from "./attribute.ts";
 import {Buyable} from "./buyable";
-
-const COST = {
-  // Primary Attributes
-  ST: 10,
-  DX: 20,
-  IQ: 20,
-  HT: 10,
-  // Secondary Attributes
-  WILL: 5,
-  FRIGHT_CHECK: 2,
-  PERCEPTION: 10,
-  VISION: 2,
-  HEARING: 2,
-  TASTE_AND_SMELL: 2,
-  TOUCH: 2
-};
+import {COST} from "./cost.ts";
+import {Reserve} from "./reserve.ts";
 
 export function createCharacter() {
   // Primary Attributes
@@ -32,6 +18,10 @@ export function createCharacter() {
   let hearing = Attribute.basedOn(perception, COST.HEARING);
   let tasteAndSmell= Attribute.basedOn(perception, COST.TASTE_AND_SMELL);
   let touch = Attribute.basedOn(perception, COST.TOUCH);
+
+  // HP & FP
+  let hp = new Reserve(strength, COST.HP);
+  let fp = new Reserve(health, COST.HP);
 
   return {
     points: {
@@ -51,7 +41,9 @@ export function createCharacter() {
           vision,
           hearing,
           tasteAndSmell,
-          touch
+          touch,
+          hp,
+          fp,
         ].reduce((total, {cost}: Buyable) => total + cost, 0)
       }
     },
@@ -69,6 +61,10 @@ export function createCharacter() {
     vision,
     hearing,
     tasteAndSmell,
-    touch
+    touch,
+
+    // HP & FP
+    hp,
+    fp,
   };
 }

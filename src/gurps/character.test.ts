@@ -10,6 +10,68 @@ describe("Character", () => {
     expect(character.points.spent).toBe(0)
   })
 
+  describe("hp", () => {
+    describe("total", () => {
+      it("defaults to ST", () => {
+        const character = createCharacter()
+
+        character.strength.score = 10;
+        expect(character.hp.total).toBe(10);
+
+        character.strength.score = 12;
+        expect(character.hp.total).toBe(12);
+      })
+
+      it("+1 hp costs +2 points", () => {
+        const character = createCharacter()
+
+        character.hp.total += 1;
+
+        expect(character.points.spent).toBe(2)
+        expect(character.points.available).toBe(148)
+      })
+
+      it("buying HP doesn't effect ST", () => {
+        const character = createCharacter()
+
+        character.hp.total += 1;
+
+        expect(character.strength.score).toBe(character.hp.total - 1);
+      })
+    })
+  })
+
+  describe("fp", () => {
+    describe("total", () => {
+      it("defaults to HT", () => {
+        const character = createCharacter()
+
+        character.health.score = 10;
+        expect(character.fp.total).toBe(10);
+
+        character.health.score = 12;
+        expect(character.fp.total).toBe(12);
+      })
+
+      it("+1 hp costs +2 points", () => {
+        const character = createCharacter()
+
+        character.fp.total += 1;
+
+        expect(character.points.spent).toBe(2)
+        expect(character.points.available).toBe(148)
+      })
+
+      it("buying HP doesn't effect ST", () => {
+        const character = createCharacter()
+
+        character.fp.total += 1;
+
+        expect(character.strength.score).toBe(character.fp.total - 1);
+      })
+    })
+  })
+
   describe("strength", () => {
     it("is 10 by default", () => {
       const character = createCharacter()
