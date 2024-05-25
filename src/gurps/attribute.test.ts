@@ -48,7 +48,7 @@ describe("Attribute", () => {
 
         const result = attribute.roll();
 
-        expect(result).toEqual({value: first + second + third})
+        expect(result.value).toEqual(first + second + third)
       })
     })
   })
