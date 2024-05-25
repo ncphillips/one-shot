@@ -21,6 +21,9 @@ export function createCharacter() {
   let basicSpeed = new Attribute({amount: 5, increment: 0.25}, () => {
     return (dexterity.score + health.score) / 4;
   })
+  let basicMove = new Attribute(5, () => {
+    return Math.floor(basicSpeed.score);
+  })
 
   // HP & FP
   let hp = new Reserve(strength, COST.HP);
@@ -49,6 +52,7 @@ export function createCharacter() {
           hp,
           fp,
           basicSpeed,
+          basicMove,
         ].reduce((total, {cost}: Buyable) => total + cost, 0)
       }
     },
@@ -68,6 +72,7 @@ export function createCharacter() {
     tasteAndSmell,
     touch,
     basicSpeed,
+    basicMove,
 
     // HP & FP
     hp,

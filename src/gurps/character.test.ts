@@ -98,6 +98,25 @@ describe("Character", () => {
       expect(character.points.spent).toBe(5)
       expect(character.points.available).toBe(145)
     })
+  })
+
+  describe("basicMove", () => {
+    it("defaults to floor(BasicSpeed)", () => {
+      const character = createCharacter()
+
+      character.basicSpeed.score = 5.5;
+
+      expect(character.basicMove.score).toBe(5)
+    })
+
+    it("+1 costs +5 points", () => {
+      const character = createCharacter()
+
+      character.basicMove.score += 1;
+
+      expect(character.points.spent).toBe(5)
+      expect(character.points.available).toBe(145)
+    })
 
   })
 
