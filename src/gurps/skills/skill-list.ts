@@ -14,8 +14,19 @@ export const administration: Skill = {
   unskilledModifier: -5,
   difficulty: "Average",
   defaults: [{
-    attribute: "merchant",
+    property: "merchant",
     modifier: -3
   }]
 }
 
+export const merchant: Skill = {
+  name: "Merchant",
+  controllingAttribute: "intelligence",
+  unskilledModifier: -5,
+  difficulty: "Average",
+  defaults: [
+    { property: "finance", modifier: -6 },
+    { property: "marketAnalysis", modifier: -4 },
+  ]
+
+}

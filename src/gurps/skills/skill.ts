@@ -7,6 +7,6 @@ export type Skill = {
   controllingAttribute: ControllingAttribute;
   unskilledModifier: number;
   difficulty: SkillDifficulty;
-  defaults?: { attribute: string, modifier: number }[]
+  defaults?: { property: string, modifier: number }[]
 }
 

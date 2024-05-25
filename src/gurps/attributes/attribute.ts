@@ -45,6 +45,14 @@ export class Attribute {
     this.#addedIncrements = value - this.baseScore;
   }
 
+  get level() {
+    return this.score
+  }
+
+  set level(value: number) {
+    this.score = value
+  }
+
   get cost() {
     return (this.#cost.amount * this.#addedIncrements)/this.#cost.increment;
   }
