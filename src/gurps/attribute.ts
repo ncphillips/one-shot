@@ -21,6 +21,6 @@ export class Attribute implements Buyable, Rollable {
     const thirdDie = d6();
     const value = firstDie + secondDie + thirdDie;
 
-    return new RollResult(this, value)
+    return new RollResult(this.score, value)
   }
 }

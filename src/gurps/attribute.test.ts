@@ -36,15 +36,11 @@ describe("Attribute", () => {
         [6, 1, 5]
       ]
       test.each(rolls)("Example: (%d, %d, %d)", (first, second, third) => {
-        const attribute = new Attribute(10)
-
-        console.log("first", first)
-        console.log("second", second)
-        console.log("third", third)
-
         d6.mockReturnValue(first)
           .mockReturnValueOnce(second)
           .mockReturnValueOnce(third);
+
+        const attribute = new Attribute(10)
 
         const result = attribute.roll();
 

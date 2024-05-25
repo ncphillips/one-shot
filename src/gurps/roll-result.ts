@@ -1,10 +1,12 @@
-import {Rollable} from "./rollable";
-
 export class RollResult {
   constructor(
-    public readonly rollable: Rollable,
+    public readonly target: number,
     public readonly value: number
   ) {
+  }
+
+  get success() {
+    return this.value <= this.target
   }
 }
 
