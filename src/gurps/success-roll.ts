@@ -29,23 +29,14 @@ export class SuccessRoll {
   }
 
   private get critSuccessMax() {
-    if (this.effectiveSkillLevel === 15) {
-      return 5
-    } else if (this.effectiveSkillLevel >= 16) {
-      return 6
-    }
+    if (this.effectiveSkillLevel === 15) return 5
+    if (this.effectiveSkillLevel >= 16) return 6
     return 4
   }
 
   private get critFailureMin() {
-    if ((this.effectiveSkillLevel + 10) <= 17) {
-      return this.effectiveSkillLevel + 10;
-    }
-
-    if (this.effectiveSkillLevel <= 15) {
-      return 17
-    }
-
+    if ((this.effectiveSkillLevel + 10) <= 17) return this.effectiveSkillLevel + 10;
+    if (this.effectiveSkillLevel <= 15) return 17
     return 18
   }
 }
