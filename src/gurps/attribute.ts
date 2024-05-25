@@ -1,7 +1,14 @@
+import {SuccessRoll} from "./success-roll.ts";
+import {d6} from "./d6.ts";
+
+type Cost = {
+  amount: number
+  increment: number
+}
 
 export class Attribute {
-  #additionalLevels: number = 0;
-  #pointsPerLevel: number
+  #addedIncrements: number = 0;
+  #cost: Cost
   #getBaseLevel: () => number
 
   static basedOn(underlying: Attribute, pointPerLevel: number): Attribute {
@@ -12,9 +19,18 @@ export class Attribute {
     return new Attribute(pointsPerLevel, () => startingLevel)
   }
 
-  constructor(pointsPerLevel: number, getBaseLevel: () => number){
-    this.#pointsPerLevel = pointsPerLevel
-    this.#getBaseLevel = getBaseLevel
+  constructor(cost: number | Cost, baseLevel: number | (() => number)) {
+    if (typeof cost === 'number') {
+      this.#cost = {amount: cost, increment: 1}
+    } else {
+      this.#cost = cost
+    }
+
+    if (typeof baseLevel === 'number') {
+      this.#getBaseLevel = () => baseLevel
+    } else {
+      this.#getBaseLevel = baseLevel
+    }
   }
 
   get baseScore() {
@@ -22,14 +38,20 @@ export class Attribute {
   }
 
   get score() {
-    return this.baseScore + this.#additionalLevels
+    return this.baseScore + this.#addedIncrements
   }
 
   set score(value) {
-    this.#additionalLevels = value - this.baseScore;
+    this.#addedIncrements = value - this.baseScore;
   }
 
   get cost() {
-    return this.#pointsPerLevel * this.#additionalLevels;
+    return (this.#cost.amount * this.#addedIncrements)/this.#cost.increment;
+  }
+
+  roll(modifier: number = 0) {
+    const value = d6() + d6() + d6();
+
+    return new SuccessRoll(this.score, value, modifier)
   }
 }

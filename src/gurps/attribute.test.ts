@@ -19,7 +19,7 @@ beforeEach(() => {
 describe("Attribute", () => {
   describe("roll", () => {
     it("rolls 3d6", () => {
-      const attribute = new Attribute(10)
+      const attribute = new Attribute(10, 10)
 
       attribute.roll();
 
@@ -40,7 +40,7 @@ describe("Attribute", () => {
           .mockReturnValueOnce(second)
           .mockReturnValueOnce(third);
 
-        const attribute = new Attribute(10)
+        const attribute = new Attribute(10,  10)
 
         const result = attribute.roll();
 
@@ -49,7 +49,7 @@ describe("Attribute", () => {
     })
 
     it("passes any modifiers to the roll result", () => {
-      const attribute = new Attribute(10)
+      const attribute = new Attribute(10,  10)
 
       expect(attribute.roll(5).effectiveSkillLevel).toEqual(15)
       expect(attribute.roll(-3).effectiveSkillLevel).toEqual(7)

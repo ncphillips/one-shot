@@ -72,6 +72,35 @@ describe("Character", () => {
     })
   })
 
+  describe("basicSpeed", () => {
+    it("defaults to (DX + HT) / 4", () => {
+      const character = createCharacter()
+
+      let expected = (character.dexterity.score + character.health.score) / 4;
+
+      expect(character.basicSpeed.score).toBe(expected)
+    })
+
+    it("doesn't round down", () => {
+      const character = createCharacter()
+
+      character.dexterity.score = 11;
+      character.health.score = 11;
+
+      expect(character.basicSpeed.score).toBe(5.5)
+    })
+
+    it("+0.25 costs +5 points", () => {
+      const character = createCharacter()
+
+      character.basicSpeed.score += 0.25;
+
+      expect(character.points.spent).toBe(5)
+      expect(character.points.available).toBe(145)
+    })
+
+  })
+
   describe("strength", () => {
     it("is 10 by default", () => {
       const character = createCharacter()

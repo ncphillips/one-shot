@@ -12,16 +12,20 @@ export function createCharacter() {
 
   // Secondary Attributes
   let will = Attribute.basedOn(intelligence, COST.WILL);
-  let frightCheck= Attribute.basedOn(will, COST.FRIGHT_CHECK);
+  let frightCheck = Attribute.basedOn(will, COST.FRIGHT_CHECK);
   let perception = Attribute.basedOn(intelligence, COST.PERCEPTION);
-  let vision= Attribute.basedOn(perception, COST.VISION);
+  let vision = Attribute.basedOn(perception, COST.VISION);
   let hearing = Attribute.basedOn(perception, COST.HEARING);
-  let tasteAndSmell= Attribute.basedOn(perception, COST.TASTE_AND_SMELL);
+  let tasteAndSmell = Attribute.basedOn(perception, COST.TASTE_AND_SMELL);
   let touch = Attribute.basedOn(perception, COST.TOUCH);
+  let basicSpeed = new Attribute({amount: 5, increment: 0.25}, () => {
+    return (dexterity.score + health.score) / 4;
+  })
 
   // HP & FP
   let hp = new Reserve(strength, COST.HP);
   let fp = new Reserve(health, COST.HP);
+
 
   return {
     points: {
@@ -44,6 +48,7 @@ export function createCharacter() {
           touch,
           hp,
           fp,
+          basicSpeed,
         ].reduce((total, {cost}: Buyable) => total + cost, 0)
       }
     },
@@ -62,6 +67,7 @@ export function createCharacter() {
     hearing,
     tasteAndSmell,
     touch,
+    basicSpeed,
 
     // HP & FP
     hp,
