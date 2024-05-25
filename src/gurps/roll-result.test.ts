@@ -77,55 +77,45 @@ describe("RollResult", () => {
     })
   })
 
-  describe("critSuccess", () => {
-    describe("for a roll of 3, 4", () => {
+  describe("critFailure", () => {
+    describe("for a roll of 18", () => {
       it("is always true", () => {
         range(1, 22).forEach((effectiveSkillLevel) => {
-          [3, 4].forEach((roll) => {
-            const result = new RollResult(effectiveSkillLevel, roll)
+          const result = new RollResult(effectiveSkillLevel, 18)
 
-            expect(result.critSuccess).toBe(true)
-          })
+          expect(result.critFailure).toBe(true)
         })
       })
     })
 
-    describe("for a roll of 5", () => {
-      const roll = 5;
+    describe("for a roll == 17", () => {
+      const roll = 17;
 
-      it("is false with a skill of (1, 14)", () => {
-        range(1, 14).forEach((effectiveSkillLevel) => {
-          const result = new RollResult(effectiveSkillLevel, roll)
-
-          expect(result.critSuccess).toBe(false)
-        })
-      })
-
-      it("is true with a skill of (15, 22)", () => {
-        range(15, 22).forEach((effectiveSkillLevel) => {
-          const result = new RollResult(effectiveSkillLevel, roll)
-
-          expect(result.critSuccess).toBe(true)
-        })
-      })
-    })
-
-    describe("for a roll of 6", () => {
-      const roll = 6
-
-      it("is false with a skill of (1, 15)", () => {
+      it("is true with a skill <= 15", () => {
         range(1, 15).forEach((effectiveSkillLevel) => {
           const result = new RollResult(effectiveSkillLevel, roll)
 
-          expect(result.critSuccess).toBe(false)
+          expect(result.critFailure).toBe(true)
         })
       })
 
-      it("is true with a skill of (16, 22)", () => {
+      it("is false with a skill of (16, 22)", () => {
         range(16, 22).forEach((effectiveSkillLevel) => {
           const result = new RollResult(effectiveSkillLevel, roll)
 
-          expect(result.critSuccess).toBe(true)
+          expect(result.critFailure).toBe(false)
+        })
+      })
+    })
+
+    describe("a roll of 10 + effective skill level", () => {
+      it("is true", () => {
+        range(5, 6).forEach((effectiveSkillLevel) => {
+          let roll = effectiveSkillLevel + 10;
+
+          const result = new RollResult(effectiveSkillLevel, roll)
+
+          expect(result.critFailure, `Expected failure roll(${roll}) with esl(${effectiveSkillLevel})`).toBe(true)
         })
       })
     })

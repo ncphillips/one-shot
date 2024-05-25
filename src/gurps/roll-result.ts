@@ -10,19 +10,33 @@ export class RollResult {
   }
 
   get critSuccess() {
-    let critMax = 4
-
-    if (this.effectiveSkillLevel === 15) {
-      critMax = 5
-    } else if (this.effectiveSkillLevel >= 16) {
-      critMax = 6
-    }
-
-    return this.value <= critMax
+    return this.value <= this.critSuccessMax
   }
 
+
   get critFailure() {
-    return this.value >= 17
+    return this.value >= this.critFailureMin
+  }
+
+  private get critSuccessMax() {
+    if (this.effectiveSkillLevel === 15) {
+      return 5
+    } else if (this.effectiveSkillLevel >= 16) {
+      return 6
+    }
+    return 4
+  }
+
+  private get critFailureMin() {
+    if ((this.effectiveSkillLevel + 10) <= 17) {
+      return this.effectiveSkillLevel + 10;
+    }
+
+    if (this.effectiveSkillLevel <= 15) {
+      return 17
+    }
+
+    return 18
   }
 }
 
