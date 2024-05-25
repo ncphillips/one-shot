@@ -11,23 +11,23 @@ describe("SuccessRoll", () => {
     })
   })
 
-  describe("success", () => {
+  describe("passed", () => {
     it("is true if value < effective skill level", () => {
       const roll = new SuccessRoll(10, 9)
 
-      expect(roll.success).toBe(true)
+      expect(roll.passed).toBe(true)
     })
 
     it("is true if value == score", () => {
       const roll = new SuccessRoll(13, 13)
 
-      expect(roll.success).toBe(true)
+      expect(roll.passed).toBe(true)
     })
 
     it("is false if value > score", () => {
       const roll= new SuccessRoll(10, 11)
 
-      expect(roll.success).toBe(false)
+      expect(roll.passed).toBe(false)
     })
   })
 
