@@ -1,14 +1,37 @@
 import {Attribute} from "./attribute.ts";
-import {SecondaryAttribute} from "./secondary-attribute.ts";
 import {Buyable} from "./buyable";
 
-export function createCharacter() {
-  let strength = new Attribute(10);
-  let dexterity = new Attribute(20);
-  let intelligence = new Attribute(20);
-  let health = new Attribute(10);
+const COST = {
+  // Primary Attributes
+  ST: 10,
+  DX: 20,
+  IQ: 20,
+  HT: 10,
+  // Secondary Attributes
+  WILL: 5,
+  FRIGHT_CHECK: 2,
+  PERCEPTION: 10,
+  VISION: 2,
+  HEARING: 2,
+  TASTE_AND_SMELL: 2,
+  TOUCH: 2
+};
 
-  let will = new SecondaryAttribute(intelligence, 5);
+export function createCharacter() {
+  // Primary Attributes
+  let strength = Attribute.primary(10, COST.ST);
+  let dexterity = Attribute.primary(10, COST.DX);
+  let intelligence = Attribute.primary(10, COST.IQ);
+  let health = Attribute.primary(10, COST.HT);
+
+  // Secondary Attributes
+  let will = Attribute.basedOn(intelligence, COST.WILL);
+  let frightCheck= Attribute.basedOn(will, COST.FRIGHT_CHECK);
+  let perception = Attribute.basedOn(intelligence, COST.PERCEPTION);
+  let vision= Attribute.basedOn(perception, COST.VISION);
+  let hearing = Attribute.basedOn(perception, COST.HEARING);
+  let tasteAndSmell= Attribute.basedOn(perception, COST.TASTE_AND_SMELL);
+  let touch = Attribute.basedOn(perception, COST.TOUCH);
 
   return {
     points: {
@@ -23,7 +46,12 @@ export function createCharacter() {
           intelligence,
           health,
           will,
-
+          frightCheck,
+          perception,
+          vision,
+          hearing,
+          tasteAndSmell,
+          touch
         ].reduce((total, {cost}: Buyable) => total + cost, 0)
       }
     },
@@ -36,6 +64,11 @@ export function createCharacter() {
 
     // Secondary Attributes
     will,
-
+    frightCheck,
+    perception,
+    vision,
+    hearing,
+    tasteAndSmell,
+    touch
   };
 }

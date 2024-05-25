@@ -1,26 +1,35 @@
-import {d6} from "./d6.ts";
-import {Buyable} from "./buyable";
-import {Rollable} from "./rollable";
-import {SuccessRoll} from "./success-roll.ts";
 
-export class Attribute implements Buyable, Rollable {
-  score = 10
+export class Attribute {
+  #additionalLevels: number = 0;
+  #pointsPerLevel: number
+  #getBaseLevel: () => number
 
-  constructor(
-    public pointPerLevel: number
-  ) {
+  static basedOn(underlying: Attribute, pointPerLevel: number): Attribute {
+    return new Attribute(pointPerLevel, () => underlying.score)
+  }
+
+  static primary(startingLevel: number, pointsPerLevel: number): Attribute {
+    return new Attribute(pointsPerLevel, () => startingLevel)
+  }
+
+  constructor(pointsPerLevel: number, getBaseLevel: () => number){
+    this.#pointsPerLevel = pointsPerLevel
+    this.#getBaseLevel = getBaseLevel
+  }
+
+  get baseScore() {
+    return this.#getBaseLevel()
+  }
+
+  get score() {
+    return this.baseScore + this.#additionalLevels
+  }
+
+  set score(value) {
+    this.#additionalLevels = value - this.baseScore;
   }
 
   get cost() {
-    return this.pointPerLevel * (this.score - 10);
-  }
-
-  roll(modifier: number = 0): SuccessRoll {
-    const firstDie = d6();
-    const secondDie = d6();
-    const thirdDie = d6();
-    const value = firstDie + secondDie + thirdDie;
-
-    return new SuccessRoll(this.score, value, modifier)
+    return this.#pointsPerLevel * this.#additionalLevels;
   }
 }
