@@ -29,6 +29,24 @@ describe("SuccessRoll", () => {
 
       expect(roll.passed).toBe(false)
     })
+
+    it("is false if value <= effective skill level BUT it was a crit failure", () => {
+      const roll = new SuccessRoll(18, 18)
+
+      expect(roll.passed).toBe(false)
+    })
+
+    it("is true if value > effective skill level BUT it was a crit success", () => {
+      const roll = new SuccessRoll(0, 3)
+
+      expect(roll.passed).toBe(true)
+    })
+
+    it ("is false if it would be both a crit success and a crit failure", () => {
+      const roll = new SuccessRoll(-7, 3)
+
+      expect(roll.passed).toBe(false)
+    })
   })
 
   describe("critSuccess", () => {

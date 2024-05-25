@@ -7,10 +7,12 @@ export class SuccessRoll {
   }
 
   get effectiveSkillLevel() {
-    return this.skillLevel + this.modifier
+    return (this.skillLevel + this.modifier)
   }
 
   get passed() {
+    if (this.critFailure) return false
+    if (this.critSuccess) return true
     return this.value <= this.effectiveSkillLevel
   }
 
