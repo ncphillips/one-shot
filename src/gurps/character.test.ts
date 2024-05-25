@@ -22,6 +22,10 @@ describe("Character", () => {
         expect(character.hp.total).toBe(12);
       })
 
+
+    })
+
+    describe("buying HP", () => {
       it("+1 hp costs +2 points", () => {
         const character = createCharacter()
 
@@ -38,6 +42,17 @@ describe("Character", () => {
 
         expect(character.strength.score).toBe(character.hp.total - 1);
       })
+
+      it("+1 hp costs +2 points", () => {
+        const character = createCharacter()
+
+        character.hp.total += 1;
+
+        expect(character.points.spent).toBe(2)
+        expect(character.points.available).toBe(148)
+      })
+
+      it("+1 hp costs +1 points")
     })
   })
 
