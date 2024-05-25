@@ -1,14 +1,18 @@
 import {Attribute} from "./attribute.ts";
 import {Buyable} from "./buyable";
-import {COST} from "./cost.ts";
 import {Reserve} from "./reserve.ts";
+import {COST} from "./attributes/cost.ts";
+import {Strength} from "./attributes/strength.ts";
+import {Dexterity} from "./attributes/dexterity.ts";
+import {Intelligence} from "./attributes/intelligence.ts";
+import {Health} from "./attributes/health.ts";
 
 export function createCharacter() {
   // Primary Attributes
-  let strength = Attribute.primary(10, COST.ST);
-  let dexterity = Attribute.primary(10, COST.DX);
-  let intelligence = Attribute.primary(10, COST.IQ);
-  let health = Attribute.primary(10, COST.HT);
+  let strength = new Strength();
+  let dexterity = new Dexterity();
+  let intelligence = new Intelligence()
+  let health = new Health();
 
   // Secondary Attributes
   let will = Attribute.basedOn(intelligence, COST.WILL);
@@ -18,6 +22,7 @@ export function createCharacter() {
   let hearing = Attribute.basedOn(perception, COST.HEARING);
   let tasteAndSmell = Attribute.basedOn(perception, COST.TASTE_AND_SMELL);
   let touch = Attribute.basedOn(perception, COST.TOUCH);
+
   let basicSpeed = new Attribute({amount: 5, increment: 0.25}, () => {
     return (dexterity.score + health.score) / 4;
   })
