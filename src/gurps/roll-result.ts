@@ -1,8 +1,13 @@
 export class RollResult {
   constructor(
-    public readonly effectiveSkillLevel: number,
-    public readonly value: number
+    public readonly skillLevel: number,
+    public readonly value: number,
+    public readonly modifier: number = 0
   ) {
+  }
+
+  get effectiveSkillLevel() {
+    return this.skillLevel + this.modifier
   }
 
   get success() {
@@ -12,7 +17,6 @@ export class RollResult {
   get critSuccess() {
     return this.value <= this.critSuccessMax
   }
-
 
   get critFailure() {
     return this.value >= this.critFailureMin

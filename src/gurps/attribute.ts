@@ -15,12 +15,12 @@ export class Attribute implements Buyable, Rollable {
     return this.pointPerLevel * (this.score - 10);
   }
 
-  roll() {
+  roll(modifier: number = 0): RollResult {
     const firstDie = d6();
     const secondDie = d6();
     const thirdDie = d6();
     const value = firstDie + secondDie + thirdDie;
 
-    return new RollResult(this.score, value)
+    return new RollResult(this.score, value, modifier)
   }
 }

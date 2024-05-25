@@ -1,4 +1,4 @@
-import {beforeEach, describe, expect, it, vi, test, Mock,} from "vitest";
+import {beforeEach, describe, expect, it, Mock, test, vi,} from "vitest";
 import {Attribute} from "./attribute.ts";
 import {d6 as mockedD6} from "./d6";
 
@@ -46,6 +46,14 @@ describe("Attribute", () => {
 
         expect(result.value).toEqual(first + second + third)
       })
+    })
+
+    it("passes any modifiers to the roll result", () => {
+      const attribute = new Attribute(10)
+
+      expect(attribute.roll(5).effectiveSkillLevel).toEqual(15)
+      expect(attribute.roll(-3).effectiveSkillLevel).toEqual(7)
+      expect(attribute.roll(2).effectiveSkillLevel).toEqual(12)
     })
   })
 });
