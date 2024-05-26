@@ -1,8 +1,10 @@
+import {d6} from "./dice/d6.ts";
+
 export class SuccessRoll {
   constructor(
     public readonly skillLevel: number,
-    public readonly value: number,
-    public readonly modifier: number = 0
+    public readonly modifier: number = 0,
+    public readonly value: number = d6() + d6() + d6()
   ) {
   }
 

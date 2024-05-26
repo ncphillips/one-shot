@@ -1,5 +1,4 @@
 import {SuccessRoll} from "../success-roll.ts";
-import {d6} from "../dice/d6.ts";
 
 type Cost = {
   amount: number
@@ -58,8 +57,6 @@ export class Attribute {
   }
 
   roll(modifier: number = 0) {
-    const value = d6() + d6() + d6();
-
-    return new SuccessRoll(this.score, value, modifier)
+    return new SuccessRoll(this.score, modifier)
   }
 }

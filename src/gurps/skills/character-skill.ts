@@ -1,6 +1,5 @@
 import {MODIFIER_COSTS_BY_DIFFICULTY} from "./skill-cost.ts";
 import {Skill} from "./skill.ts";
-import {d6} from "../dice/d6.ts";
 import {SuccessRoll} from "../success-roll.ts";
 
 export class CharacterSkill {
@@ -49,9 +48,7 @@ export class CharacterSkill {
   }
 
   roll(rollModifier: number = 0) {
-    const value = d6() + d6() + d6();
-
-    return new SuccessRoll(this.level, value, rollModifier)
+    return new SuccessRoll(this.level, rollModifier)
   }
 
   private get attributeLevel() {
