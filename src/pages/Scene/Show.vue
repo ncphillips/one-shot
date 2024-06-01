@@ -1,5 +1,5 @@
 <template>
-  <main class="my-2 mx-4">
+  <main>
     <h1>{{ adventure?.title }}</h1>
     <section v-if="adventure && currentScene" id="current-scene">
       <h2>{{ currentScene.title }}</h2>

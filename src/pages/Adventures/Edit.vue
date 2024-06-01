@@ -1,5 +1,5 @@
 <template>
-  <main class="my-2 mx-4">
+  <main>
     <form v-if="adventure" @submit="onSave()">
       <h1>Edit Adventure</h1>
 

@@ -36,6 +36,8 @@ export function createCharacter() {
 
 
   return {
+    name: '',
+    player: '',
     points: {
       received: 150,
       get available() {

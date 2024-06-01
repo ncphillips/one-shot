@@ -1,7 +1,12 @@
 <template>
-  <main class="px-3 py-2">
+  <main>
     <h1 class="mb-5">Solo GURPS</h1>
 
+    <RouterLink class="btn primary" to="/characters/create">
+      Create a Character
+    </RouterLink>
+
+    <h2 class="mt-5">Your Adventures</h2>
     <ul class="flex flex-col gap-4">
       <li
         v-for="file in jsonFiles"

@@ -19,6 +19,16 @@ const routes: RouterOptions["routes"] = [
     ],
   },
   {
+    path: "/characters/",
+    children: [
+      {
+        name: "characters.create",
+        path: "create",
+        component: () => import("./pages/Characters/Create.vue"),
+      },
+    ],
+  },
+  {
     name: "prosemirror-playground",
     path: "/prosemirror-playground",
     component: () => import("./pages/ProsemirrorPlayground.vue"),
