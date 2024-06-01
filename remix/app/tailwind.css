@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-slate-50 text-slate-900;
+}
+
+main {
+  @apply max-w-3xl mx-auto p-4;
+}
+
+h1 {
+  @apply text-5xl font-bold;
+
+  &:not(:first-child) {
+    @apply mt-6;
+  }
+}
+
+h2 {
+  @apply text-4xl font-bold;
+
+  &:not(:first-child) {
+    @apply mt-5;
+  }
+}
+
+h3 {
+  @apply text-3xl font-bold;
+
+  &:not(:first-child) {
+    @apply mt-4;
+  }
+}
+
+h4 {
+  @apply text-2xl font-bold;
+
+  &:not(:first-child) {
+    @apply mt-3;
+  }
+}
+
+h5 {
+  @apply text-xl font-bold;
+
+  &:not(:first-child) {
+    @apply mt-2;
+  }
+}
+
+h6 {
+  @apply text-lg font-bold;
+
+  &:not(:first-child) {
+    @apply mt-1;
+  }
+}
+
+blockquote {
+  @apply border-l-4 border-slate-300 pl-2;
+}
+
+p {
+  @apply my-2;
+}
+
+
+input[type="text"],
+input[type="number"],
+textarea,
+.ProseMirror {
+  @apply px-2 py-1 border border-slate-400 rounded w-full shadow-inset shadow-slate-200;
+
+  &:focus {
+    @apply outline-none border-teal-500 shadow-teal-50;
+  }
+}
+
+select {
+  @apply bg-white px-2 py-1.5 border border-slate-400 rounded w-full shadow-inset shadow-slate-200;
+
+  &:focus {
+    @apply outline-none border-teal-500 shadow-teal-50;
+  }
+}
+
+fieldset {
+  @apply border border-slate-400 rounded p-4 flex flex-col gap-4;
+}
+
+legend {
+  @apply text-lg font-bold bg-inherit px-2;
+}
+
+form {
+  @apply flex flex-col gap-4;
+}
+
+.btn {
+  @apply h-fit w-fit px-4 py-2 bg-slate-900 text-white rounded;
+}
+
+.btn.primary {
+  @apply bg-teal-700 border border-teal-900 shadow;
+
+  &:hover {
+    @apply bg-teal-800;
+  }
+
+  &:active {
+    @apply bg-teal-900;
+  }
+}
+
+.btn.white {
+  @apply bg-white text-slate-900 border border-slate-400 shadow;
+
+  &:hover {
+    @apply bg-slate-50;
+  }
+
+  &:active {
+    @apply bg-slate-100;
+  }
+}
+
+.btn.danger {
+  @apply bg-red-700 border border-red-900 shadow;
+
+  &:hover {
+    @apply bg-red-800;
+  }
+
+  &:active {
+    @apply bg-red-900;
+  }
+}
+
+.btn.sm {
+  @apply px-2 py-1 text-sm;
+}
+
+table {
+  @apply w-full border-collapse;
+
+  tr {
+    td {
+      @apply px-2 py-1;
+    }
+  }
+
+  /* Rows have alternating background colors*/
+
+  tr:nth-child(odd) {
+    @apply bg-slate-200;
+  }
+
+  tr:nth-child(even) {
+    @apply bg-slate-50;
+  }
+}

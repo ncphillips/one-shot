@@ -1,6 +1,6 @@
 import {describe, expect, it} from "vitest"
-import {SuccessRoll} from "./success-roll.ts"
-import {range} from "./range.ts";
+import {SuccessRoll} from "./success-roll"
+import {range} from "./range";
 
 describe("SuccessRoll", () => {
   describe("effectiveSkillLevel", () => {

@@ -1,4 +1,4 @@
-import {SkillDifficulty} from "./skill.ts";
+import {SkillDifficulty} from "./skill";
 
 export const MODIFIER_COSTS_BY_DIFFICULTY: Record<SkillDifficulty, { [key: number]: number }> = {
   "Easy": {

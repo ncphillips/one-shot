@@ -1,6 +1,6 @@
-import {MODIFIER_COSTS_BY_DIFFICULTY} from "./skill-cost.ts";
-import {Skill} from "./skill.ts";
-import {SuccessRoll} from "../success-roll.ts";
+import {MODIFIER_COSTS_BY_DIFFICULTY} from "./skill-cost";
+import {Skill} from "./skill";
+import {SuccessRoll} from "../success-roll";
 
 export class CharacterSkill {
   #purchasedModifier ?: number;

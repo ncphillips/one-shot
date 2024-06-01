@@ -1,5 +1,5 @@
-import {Attribute} from "./attribute.ts";
-import {COST} from "./cost.ts";
+import {Attribute} from "./attribute";
+import {COST} from "./cost";
 
 export class Intelligence extends Attribute {
   constructor() {

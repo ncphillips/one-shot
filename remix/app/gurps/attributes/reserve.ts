@@ -1,4 +1,4 @@
-import {Attribute} from "./attribute.ts";
+import {Attribute} from "./attribute";
 
 export class Reserve extends Attribute {
   constructor(baseAttribute: Attribute, cost: number) {

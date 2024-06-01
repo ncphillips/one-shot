@@ -1,4 +1,4 @@
-import {d6} from "./dice/d6.ts";
+import {d6} from "./dice/d6";
 
 export class SuccessRoll {
   constructor(

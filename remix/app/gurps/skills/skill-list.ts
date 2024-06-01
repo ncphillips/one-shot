@@ -1,4 +1,4 @@
-import {Skill} from "./skill.ts";
+import {Skill} from "./skill";
 
 export const bicycling: Skill = {
   name: "Bicycling",

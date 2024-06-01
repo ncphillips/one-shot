@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest"
-import {createCharacter} from "./character.ts";
+import {createCharacter} from "./character";
 
 describe("Character", () => {
   it("has receives 150 points to start", () => {

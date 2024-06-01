@@ -1,5 +1,5 @@
 import {describe, test, expect} from "vitest"
-import {range} from "./range.ts";
+import {range} from "./range";
 
 describe("range", () => {
   test("(0, 1)", () => {

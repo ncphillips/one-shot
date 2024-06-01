@@ -1,4 +1,4 @@
-import {SuccessRoll} from "./success-roll.ts";
+import {SuccessRoll} from "./success-roll";
 
 export type Rollable = {
   score: number;

@@ -1,11 +1,11 @@
-import {SuccessRoll} from "../success-roll.ts";
+import {SuccessRoll} from "../success-roll";
 
 type Cost = {
   amount: number
   increment: number
 }
 
-export class Attribute {
+export class Attribute extends EventTarget {
   #addedIncrements: number = 0;
   #cost: Cost
   #getBaseLevel: () => number
@@ -19,6 +19,7 @@ export class Attribute {
   }
 
   constructor(cost: number | Cost, baseLevel: number | (() => number)) {
+    super()
     if (typeof cost === 'number') {
       this.#cost = {amount: cost, increment: 1}
     } else {
@@ -42,6 +43,7 @@ export class Attribute {
 
   set score(value) {
     this.#addedIncrements = value - this.baseScore;
+    this.dispatchEvent(new Event('change'))
   }
 
   get level() {
@@ -50,6 +52,8 @@ export class Attribute {
 
   set level(value: number) {
     this.score = value
+
+    this.dispatchEvent(new Event('change'))
   }
 
   get cost() {
