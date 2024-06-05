@@ -11,7 +11,7 @@ export function meta() {
 }
 
 export default function Create() {
-  const [forceRenderKey, setForceRenderKey] = useState(0);
+  const [, setForceRenderKey] = useState(0);
   const forceRerender = () => {
     setForceRenderKey((prevKey) => prevKey + 1);
   };
@@ -134,13 +134,13 @@ export default function Create() {
             </div>
 
             <div className="flex gap-2 items-end">
-              <div className="text-xl">[{character.intelligence.cost}]</div>
+              <div className="text-xl">[{character.perception.cost}]</div>
               <AttributeField
                 label="Perception"
                 type="number"
-                value={character.intelligence.score}
+                value={character.perception.score}
                 onChange={(value) => {
-                  character.intelligence.score = ~~value;
+                  character.perception.score = ~~value;
                 }}
               />
             </div>
@@ -195,6 +195,7 @@ export default function Create() {
               <AttributeField
                 label="Basic Speed"
                 type="number"
+                step={0.25}
                 value={character.basicSpeed.score}
                 onChange={(value) => {
                   character.basicSpeed.score = ~~value;

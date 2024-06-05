@@ -1,10 +1,8 @@
 import React from "react";
-import { Field } from "./Field"; // Assuming you have a component named GField
 
 type AttributeFieldProps = {
   id?: string;
   label: string;
-  error?: string;
   type?: string;
   value: string | number;
   onChange(value: string | number): void;
@@ -13,7 +11,6 @@ type AttributeFieldProps = {
 const AttributeField: React.FC<AttributeFieldProps> = ({
   id,
   label,
-  error,
   type,
   onChange,
   ...rest
